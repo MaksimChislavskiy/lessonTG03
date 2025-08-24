@@ -15,17 +15,6 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
-# conn = sqlite3.connect('bot.db')
-# cur = conn.cursor()
-# cur.execute('''
-# CREATE TABLE IF NOT EXISTS users (
-# id INTEGER PRIMARY KEY,
-# username TEXT,
-# chat_id INTEGER)''')
-
-# conn.commit()
-# conn.close()
-
 class Form(StatesGroup):
     name = State()
     age = State()
@@ -75,8 +64,6 @@ async def grade(message: Message, state:FSMContext):
                 (user_data['name'], user_data['age'], user_data['grade']))
     conn.commit()
     conn.close()
-
-    #async with aiohttp.ClientSession() as session:
 
 async def main():
     await dp.start_polling(bot)
